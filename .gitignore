@@ -9,8 +9,11 @@ venv/
 data/
 outputs/
 results/
+results_test/
 checkpoints/
+out/
 
+*.sh
 *.pth
 *.pt
 *.ckpt
