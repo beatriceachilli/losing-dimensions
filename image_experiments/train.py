@@ -199,12 +199,12 @@ def main(args) -> None:
             running_loss = 0.0
             t0 = time.time()
 
-        if (step + 1) % args.train.ckpt_every == 0 or (step + 1) == args.train.iterations:
-            ckpt_path = os.path.join(ckpt_dir, f"{step + 1}.pt")
-            save_checkpoint(ckpt_path, step + 1, raw_model, ema_model, optimizer, args)
-            latest_path = os.path.join(ckpt_dir, "latest.pt")
-            save_checkpoint(latest_path, step + 1, raw_model, ema_model, optimizer, args)
-            logger.info(f"Saved checkpoint at step {step + 1} -> {ckpt_path}")
+        # if (step + 1) % args.train.ckpt_every == 0 or (step + 1) == args.train.iterations:
+        #     ckpt_path = os.path.join(ckpt_dir, f"{step + 1}.pt")
+        #     save_checkpoint(ckpt_path, step + 1, raw_model, ema_model, optimizer, args)
+        #     latest_path = os.path.join(ckpt_dir, "latest.pt")
+        #     save_checkpoint(latest_path, step + 1, raw_model, ema_model, optimizer, args)
+        #     logger.info(f"Saved checkpoint at step {step + 1} -> {ckpt_path}")
 
         if (step + 1) % args.train.ckpt_every == 0 or (step + 1) == args.train.iterations:
             latest_path = os.path.join(ckpt_dir, "latest.pt")
@@ -214,7 +214,7 @@ def main(args) -> None:
             if args.run.keep_milestone_every > 0:
                 n_ckpts_so_far = (step + 1) // args.train.ckpt_every
                 if n_ckpts_so_far % args.run.keep_milestone_every == 0:
-                    milestone_path = os.path.join(ckpt_dir, f"{step + 1}.pt")
+                    milestone_path = os.path.join(ckpt_dir, f"{step + 1}_milestone.pt")
                     save_checkpoint(
                         milestone_path, step + 1, raw_model, ema_model, optimizer, args
                     )
